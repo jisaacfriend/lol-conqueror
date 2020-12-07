@@ -1,4 +1,4 @@
-![Conqueror Logo](https://github.com/jisaacfriend/league-conqueror/blob/master/src/assets/images/logo.png)
+![Conqueror Logo](https://github.com/jisaacfriend/lol-conqueror/blob/main/src/assets/images/logo.png)
 
 [![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
