@@ -10,8 +10,6 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/jisaacfriend/league-conqueror?label=Watch%20on%20Github&style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/league-conqueror?style=social)
 
-Created using [https://github.com/maximegris/angular-electron](https://github.com/maximegris/angular-electron).
-
 # Introduction
 
 An Electron App for importing builds from popular websites into League of Legends
