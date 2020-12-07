@@ -1,13 +1,39 @@
 {
   "name": "lol-conqueror",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "An Electron app for importing champion builds into LoL (based on the now-defunct Championify).",
+  "homepage": "https://github.com/jisaacfriend/lol-conqueror",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jisaacfriend/lol-conqueror"
+  },
+  "author": {
+    "name": "J. Isaac Friend"
+  },
+  "license": "MIT",
+  "keywords": [
+    "League",
+    "Legends",
+    "Championify",
+    "Champion",
+    "Champ Builds",
+    "pro builds"
+  ],
+  "engines": {
+    "node": "14.4.0",
+    "npm": "6.14.9",
+    "electron": "11.0.3",
+    "angular": "11.0.3"
+  },
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:electron": "ng build --base-href ./ && electron ."
   },
   "private": true,
   "dependencies": {
@@ -30,6 +56,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "electron": "^11.0.3",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
