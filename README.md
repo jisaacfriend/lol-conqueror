@@ -1,27 +1,21 @@
-# LolConqueror
+![Conqueror Logo](https://github.com/jisaacfriend/league-conqueror/blob/master/src/assets/icons/favicon256x256.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
-## Development server
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/jisaacfriend/league-conqueror)
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
+[![Make a pull request](https://img.shields.io/badge/PRs-Welcome-brightgreen)](/pulls)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![GitHub watchers](https://img.shields.io/github/watchers/jisaacfriend/league-conqueror?label=Watch%20on%20Github&style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/league-conqueror?style=social)
 
-## Code scaffolding
+Created using [https://github.com/maximegris/angular-electron](https://github.com/maximegris/angular-electron).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Introduction
 
-## Build
+An Electron App for importing builds from popular websites into League of Legends
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Credit
+* App icon by mindwaste
+* [Riot Games](https://www.riotgames.com/) for creating and maintaining League of Legends
