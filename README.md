@@ -15,5 +15,5 @@
 An Electron App for importing builds from popular websites into League of Legends
 
 ## Credit
-* App icon by mindwaste
+* App logo and icon by mindwaste
 * [Riot Games](https://www.riotgames.com/) for creating and maintaining League of Legends
