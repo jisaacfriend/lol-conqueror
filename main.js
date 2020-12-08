@@ -20,6 +20,7 @@ function createWindow() {
       slashes: true,
     }),
   );
+
   // Open the Dev Tools
   // mainWindow.webContents.openDevTools()
 
