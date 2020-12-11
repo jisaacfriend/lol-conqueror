@@ -2,9 +2,25 @@
   "name": "lol-conqueror",
   "version": "0.1.0",
   "description": "An Electron app for importing champion builds into LoL (based on the now-defunct Championify).",
-  "main": "public/electron.js",
   "homepage": "./",
+  "bugs": "https://github.com/jisaacfriend/lol-conqueror/issues",
+  "license": "MIT",
   "private": true,
+  "main": "public/electron.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jisaacfriend/lol-conqueror"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
+    "electron": "wait-on tcp:3000 && electron-forge start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "package": "react-scripts build && electron-forge package",
+    "make": "react-scripts build && electron-forge make"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -16,15 +32,10 @@
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
-  "scripts": {
-    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
-    "electron": "wait-on tcp:3000 && electron-forge start",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "package": "react-scripts build && electron-forge package",
-    "make": "react-scripts build && electron-forge make"
+  "engines": {
+    "node": ">=14.5.0",
+    "react": ">=17.0.1",
+    "bootstrap": ">=4.5.3"
   },
   "eslintConfig": {
     "extends": [
