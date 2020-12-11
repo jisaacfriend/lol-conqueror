@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+![Conqueror Logo](https://github.com/jisaacfriend/lol-conqueror/blob/main/src/assets/images/logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Node Logo](https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg)](https://nodejs.org/) [![React Logo](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)](https://angular.io/) [![Bootstrap Logo](https://www.vectorlogo.zone/logos/getbootstrap/getbootstrap-icon.svg)](https://getbootstrap.com/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
-## Available Scripts
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/jisaacfriend/league-conqueror)
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
+[![Make a pull request](https://img.shields.io/badge/PRs-Welcome-brightgreen)](/pulls)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-In the project directory, you can run:
+![GitHub watchers](https://img.shields.io/github/watchers/jisaacfriend/lol-conqueror?label=Watch%20on%20Github&style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/lol-conqueror?style=social)
 
-### `npm start`
+# Introduction
+LoL Conqueror is a successor to the awesome [Championify](https://github.com/dustinblackman/Championify) app from Dustin Blackman.  The app continued to work for a while, but as of League Season 11 (pre-season) it no longer works.  This app is a humble attempt to fill the enourmous hole left by Dustin's brilliant Championify app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Like Championify, LoL Conqueror will download item builds from many different popular websites and then import them into the game for you to use in-game.  Simple!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Since LoL Conqueror is an Electron app, Windows 10 and Mac OS are both supported.
 
-### `npm test`
+## Features
+* Supports Summoner's Rift and ARAM
+* Choose which sources you want to download from
+* Includes skill priorities
+* Does not touch the item sets created by you or other programs
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Downloads
+You can find the latest release [here](https://github.com/jisaacfriend/lol-conqueror/releases/latest).
 
-### `npm run build`
+## Ideas and Suggestions
+LoL Conqueror can always be better!  If you have an idea for a feature, feel free to add an [issue](https://github.com/jisaacfriend/lol-conqueror/issues) and I will consider it for a future release!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Donate
+LoL Conqueror is free, open-source, made and maintained by me.  While I don't charge anything for the app, I never object if someone wants to buy me a cup of coffee or a beer!  If you would like to do so, hit me up on [Ko-fi](https://ko-fi.com/jisaacfriend).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contribute
+If you find a bug, have a feature you'd like to see added, or anything else, feel free to [submit a pull request](https://github.com/jisaacfriend/lol-conqueror/pulls).  Any and all ideas, features, and fixes are welcome!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Credit
+* App logo and icon by mindwaste
+* [Riot Games](https://www.riotgames.com/) for creating and maintaining League of Legends
 
-### `npm run eject`
+## License
+LoL Conqueror is published under the [MIT License](https://opensource.org/licenses/MIT).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Copyright 2020 J. Isaac Friend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Disclaimer
+LoL Conqueror isn't endorsed by any of it's content sources or Riot Games and doesn't reflect the views or opinions of them or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
