@@ -1,0 +1,36 @@
+footer {
+  display: block;
+  height: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 440px;
+  background: rgba(40,40,40,.4);
+  padding: 5px 15px;
+  color: #00c2d1;
+
+  div {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 33%;
+
+    &.donate {
+      text-align: left;
+    }
+
+    &.github {
+      text-align: center;
+    }
+
+    &.version {
+      text-align: right;
+      color: #c5a153;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: #00c2d1;
+    }
+  }
+}
