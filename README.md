@@ -7,8 +7,8 @@
 [![Make a pull request](https://img.shields.io/badge/PRs-Welcome-brightgreen)](/pulls)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-![GitHub watchers](https://img.shields.io/github/watchers/jisaacfriend/league-conqueror?label=Watch%20on%20Github&style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/league-conqueror?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/jisaacfriend/lol-conqueror?label=Watch%20on%20Github&style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/lol-conqueror?style=social)
 
 # Introduction
 LoL Conqueror is a successor to the awesome [Championify](https://github.com/dustinblackman/Championify) app from Dustin Blackman.  The app continued to work for a while, but as of League Season 11 (pre-season) it no longer works.  This app is a humble attempt to fill the enourmous hole left by Dustin's brilliant Championify app.
