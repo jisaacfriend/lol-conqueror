@@ -11,7 +11,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/jisaacfriend/lol-conqueror?style=social)
 
 # Introduction
-LoL Conqueror is a successor to the awesome [Championify](https://github.com/dustinblackman/Championify) app from Dustin Blackman.  The app continued to work for a while, but as of League Season 11 (pre-season) it no longer works.  This app is a humble attempt to fill the enourmous hole left by Dustin's brilliant Championify app.
+LoL Conqueror is a successor to the awesome [Championify](https://github.com/dustinblackman/Championify) app from Dustin Blackman.  The app continued to work for a while, but as of League Season 11 (pre-season) it no longer works.  This app is a humble attempt to fill the enormous hole left by Dustin's brilliant Championify app.
 
 Like Championify, LoL Conqueror will download item builds from many different popular websites and then import them into the game for you to use in-game.  Simple!
 
