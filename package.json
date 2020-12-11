@@ -1,6 +1,7 @@
 {
   "name": "lol-conqueror",
   "version": "0.1.0",
+  "description": "An Electron app for importing champion builds into LoL (based on the now-defunct Championify).",
   "main": "public/electron.js",
   "homepage": "./",
   "private": true,
@@ -76,7 +77,11 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "options": {
+              "icon": "src/icons/png/512x512.png"
+            }
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
