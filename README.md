@@ -15,7 +15,7 @@ LoL Conqueror is a successor to the awesome [Championify](https://github.com/dus
 
 Like Championify, LoL Conqueror will download item builds from many different popular websites and then import them into the game for you to use in-game.  Simple!
 
-Since LoL Conqueror is an Electron app, Windows 10 and Mac OS are both supported.
+Since LoL Conqueror is an Electron app, Windows 10, Mac OS, and Linux are all supported.
 
 ## Features
 * Supports Summoner's Rift and ARAM
