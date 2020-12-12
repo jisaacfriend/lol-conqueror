@@ -1,5 +1,6 @@
 {
   "name": "lol-conqueror",
+  "productName": "LoL Conqueror",
   "version": "0.1.0",
   "description": "An Electron app for importing champion builds into LoL (based on the now-defunct Championify).",
   "homepage": "./",
