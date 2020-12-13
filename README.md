@@ -1,6 +1,6 @@
 ![Conqueror Logo](https://github.com/jisaacfriend/lol-conqueror/blob/main/src/assets/images/logo.png)
 
-[![Node Logo](https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg)](https://nodejs.org/) [![React Logo](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)](https://angular.io/) [![Bootstrap Logo](https://www.vectorlogo.zone/logos/getbootstrap/getbootstrap-icon.svg)](https://getbootstrap.com/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
+[![Node Logo](https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg)](https://nodejs.org/) [![React Logo](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)](https://angular.io/) [![Font Awesome Logo](https://www.vectorlogo.zone/logos/font-awesome/font-awesome-icon.svg)](https://fontawesome.com/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jisaacfriend/league-conqueror)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
