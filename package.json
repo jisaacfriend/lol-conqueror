@@ -7,7 +7,7 @@
   "bugs": "https://github.com/jisaacfriend/lol-conqueror/issues",
   "license": "MIT",
   "private": true,
-  "main": "public/electron.js",
+  "main": "electron/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jisaacfriend/lol-conqueror"
@@ -62,6 +62,10 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "concurrently": "^5.3.0",
     "electron": "^11.0.4",
     "electron-devtools-installer": "^3.1.1",
