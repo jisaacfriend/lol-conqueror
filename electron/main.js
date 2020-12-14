@@ -1,8 +1,10 @@
 const path = require('path');
-const Store = require('./components/store')
 
 const { app, BrowserWindow, Menu, shell } = require('electron');
+const Store = require('electron-store');
 const isDev = require('electron-is-dev');
+
+const PUBLIC = path.join(__dirname, '../public');
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS;
@@ -19,7 +21,6 @@ if (require('electron-squirrel-startup')) {
 }
 
 const store = new Store({
-  configName: 'user-preferences',
   defaults: {
     windowBounds: {
       width: 470,
@@ -30,20 +31,23 @@ const store = new Store({
 
 const createMainWindow = () => {
   const { width, height } = store.get('windowBounds');
-console.log(width, height)
-  // Create the browser window.
+
   const mainWin = new BrowserWindow({
-    width,
-    height,
+    useContentSize: true,
+    center: true,
+    redsizable: false,
+    backgroundColor: '#010A13',
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
     },
   });
 
   mainWin.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../public/index.html')}`
+      : `file://${PUBLIC}/index.html)`
   );
 
   mainWin.setContentSize(470, 650);
@@ -70,7 +74,7 @@ const generateSettingsWindow = () => {
     },
   });
 
-  settingsWin.loadURL(`file://${path.join(__dirname, '../public/settings.html')}`);
+  settingsWin.loadURL(`file://${PUBLIC}/settings.html)`);
 
   settingsWin.on('closed', () => settingsWin = null);
 };
@@ -123,9 +127,6 @@ const generateMenu = () => {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createMainWindow();
   generateMenu();
@@ -147,6 +148,3 @@ app.on('activate', () => {
     createMainWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
