@@ -1,0 +1,35 @@
+module.exports = {
+  extends: [
+    'airbnb-base',
+  ],
+  env: {
+    commonjs: true,
+    es6: true,
+    node: true,
+  },
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {
+    'no-console': 0,
+    'no-underscore-dangle': 0,
+    'quote-props': [2, 'consistent-as-needed'],
+    // Unused variables are errors. If intentionally unused, start the
+    // variable name with _ or unused- or ignored
+    'no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^(_|unused-|[iI]gnored)',
+        argsIgnorePattern: '^(_|unused-|[iI]gnored)',
+      },
+    ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+  },
+};

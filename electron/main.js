@@ -1,82 +1,132 @@
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  shell,
+  dialog,
+  ipcMain,
+} = require('electron');
+
+const isDev = require('electron-is-dev');
+const fs = require('fs');
 const path = require('path');
 
-const { app, BrowserWindow, Menu, shell } = require('electron');
-const Store = require('electron-store');
-const isDev = require('electron-is-dev');
+const Store = require('./store');
+const defaultSettings = require('./data/defaults');
 
 const PUBLIC = path.join(__dirname, '../public');
+const PLATFORM = process.platform;
+const VALID_FILENAMES =new Map([
+  ['darwin', 'League of Legends.app'],
+  ['win32', 'LeagueClient.exe'],
+]);
+
+const settings = new Store();
 
 // Conditionally include the dev tools installer to load React Dev Tools
-let installExtension, REACT_DEVELOPER_TOOLS;
+let mainWin; let installExtension; let REACT_DEVELOPER_TOOLS;
 
 if (isDev) {
+  // eslint-disable-next-line global-require
   const devTools = require('electron-devtools-installer');
   installExtension = devTools.default;
   REACT_DEVELOPER_TOOLS = devTools.REACT_DEVELOPER_TOOLS;
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling
+// eslint-disable-next-line global-require
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const store = new Store({
-  defaults: {
-    windowBounds: {
-      width: 470,
-      height: 650,
-    }
-  },
+const verifyInstall = (path) => {
+  const fileName = VALID_FILENAMES.get(PLATFORM);
+
+  return path.endsWith(fileName);
+};
+
+const initConfig = () => {
+  settings.setDefaults(defaultSettings);
+
+  const installPath = settings.getUserSetting('installPath') || settings.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
+  const installIsValid = fs.existsSync(installPath) && verifyInstall(installPath);
+  const sources = settings.getUserSetting('sources') || settings.getDefaultSetting(`sources`);
+  const itemSets = settings.getUserSetting('itemSets') || settings.getDefaultSetting(`itemSets`);
+
+  return {
+    installIsValid,
+    installPath,
+    sources,
+    itemSets,
+  }
+};
+
+ipcMain.on('get-install-path', (e) => {
+  const extensions = PLATFORM === 'darwin'
+    ? ['app']
+    : ['exe'];
+
+  const [selectedPath] = dialog.showOpenDialogSync(mainWin, {
+    filters: [
+      { name: 'Applications', extensions },
+    ],
+  });
+
+  const isValid = verifyInstall(selectedPath);
+
+  if (isValid) settings.setUserSetting('installPath', selectedPath);
+
+  e.returnValue = {
+    isValid,
+    selectedPath,
+  };
 });
 
 const createMainWindow = () => {
-  const { width, height } = store.get('windowBounds');
-
-  const mainWin = new BrowserWindow({
+  mainWin = new BrowserWindow({
     useContentSize: true,
     center: true,
-    redsizable: false,
+    resizable: false,
     backgroundColor: '#010A13',
+    show: false,
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
+      enableRemoteModule: false,
       contextIsolation: false,
     },
   });
 
+  const initialConfig = initConfig();
+  console.log(initialConfig);
+
+  mainWin.webContents.on('did-finish-load', () => {
+    mainWin.webContents.send('init-config', initialConfig);
+  });
+
+
   mainWin.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${PUBLIC}/index.html)`
+      : `file://${PUBLIC}/index.html)`,
   );
 
   mainWin.setContentSize(470, 650);
+
+  mainWin.on('ready-to-show', () => {
+    mainWin.show();
+  });
+
+  mainWin.on('closed', () => {
+    mainWin = null;
+  });
 
   if (isDev) {
     mainWin.webContents.openDevTools({ mode: 'detach' });
 
     installExtension(REACT_DEVELOPER_TOOLS)
-      .then(name => console.log(`Added Extension:  ${name}`))
-      .catch(error => console.log(`An error occurred: , ${error}`));
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((error) => console.log(`An error occurred: , ${error}`));
   }
-};
-
-const generateSettingsWindow = () => {
-  let settingsWin = new BrowserWindow({
-    width: 800,
-    height: 600,
-    resizable: false,
-    minimizable: false,
-    fullscreenable: false,
-    title: 'Settings',
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-
-  settingsWin.loadURL(`file://${PUBLIC}/settings.html)`);
-
-  settingsWin.on('closed', () => settingsWin = null);
 };
 
 const generateMenu = () => {
@@ -93,15 +143,6 @@ const generateMenu = () => {
       ],
     },
     {
-      label: 'Edit',
-      submenu: [
-        {
-          label: 'Settings',
-          click() { generateSettingsWindow() },
-        }
-      ]
-    },
-    {
       role: 'help',
       submenu: [
         {
@@ -114,11 +155,11 @@ const generateMenu = () => {
           click() {
             shell.openExternal('https://github.com/jisaacfriend/lol-conqueror/issues');
           },
-          label: 'File Issue on GitHub'
+          label: 'File Issue on GitHub',
         },
         {
           label: `About ${appName}`,
-          role: 'about'
+          role: 'about',
         },
       ],
     },
@@ -136,7 +177,7 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+  if (PLATFORM !== 'darwin') {
     app.quit();
   }
 });

@@ -1,3 +1,84 @@
+/* CSS Resets */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article>*+* {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Application CSS */
 .App {
   width: 470px;
   height: 650px;
@@ -12,6 +93,46 @@ hr {
   height: 1px;
   background-color: #666;
   border: none;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle,
+.show > .btn-primary.dropdown-toggle:focus {
+  background-color: #006068;
+  border-color: #006068;
+  box-shadow: 0 0 0 .2rem rgba(0,96,104);
+}
+
+.install-success {
+  text-align: center;
+}
+
+.text-success {
+  color: #447604 !important;
+}
+
+.text-white {
+  color: #fefefe;
+}
+.install-invalid {
+  text-align: center;
+  color: #c5a153;
+}
+
+.install-error-message {
+  color: #B3001B;
+}
+
+.spinner-border.text-light {
+  color: #C5A153 !important;
 }
 
 footer {
