@@ -1,0 +1,35 @@
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+
+class Sources extends React.Component {
+  renderContent() {
+    console.log(this.props);
+    const sourceSelectors = Object.entries(this.props.sources).map(([source, status]) => {
+      return (
+        <Form.Check
+          key={source}
+          type="checkbox"
+          id={source}
+          label={source}
+          defaultChecked={status}
+        />
+      )
+    });
+
+    return this.props.isValid
+      ? (<Form>
+          // {sourceSelectors}
+        </Form>)
+      : null;
+  }
+
+  render() {
+    return (
+      <div className="sources-selector">
+        {this.renderContent()}
+      </div>
+    );
+  }
+}
+
+export default Sources;
