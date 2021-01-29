@@ -38,10 +38,14 @@ class SettingsPane extends React.Component {
 
   saveSettings = () => {
     console.log('Save Settings');
+    ipcRenderer.invoke('save-settings', { sources: this.state.sources, options: this.state.options })
+      .then((res) => console.log(res));
   }
 
   restoreDefaultSettings = () => {
     console.log('Restore Default Settings');
+    ipcRenderer.invoke('restore-options')
+      .then(({ sources, options }) => this.setState({ sources, options }));
   }
 
   processSettings = () => {
@@ -91,8 +95,8 @@ class SettingsPane extends React.Component {
     return this.props.isValid
       ? (<div className="settings-pane">
           <div className="settings-controls">
-            <FontAwesomeIcon icon={faUndo} title="Restore Defaults" id="restoreDefaultSettings" className="save-icon" onClick={this.restoreDefaultSettings} />
-            <FontAwesomeIcon icon={faSave} title="Save Settings" id="saveSettings" className="save-icon" onClick={this.saveSettings} />
+            <FontAwesomeIcon icon={faUndo} title="Restore Last Saved Settings" className="control-icon" onClick={this.restoreDefaultSettings} />
+            <FontAwesomeIcon icon={faSave} title="Save Settings" className="control-icon" onClick={this.saveSettings} />
           </div>
           <h4 className="settings-heading">Sources</h4>
           {sourcesState}

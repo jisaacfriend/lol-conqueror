@@ -95,7 +95,14 @@ ipcMain.handle('save-settings', async (e, data) => {
   store.setUserSetting('sources', data.sources);
   store.setUserSetting('options', data.options);
   console.log(data.options)
-  return 'saved';
+  return 'Settings saved!';
+});
+
+ipcMain.handle('restore-options', async () => {
+  const sources = store.getUserSetting('sources') || store.getDefaultSetting('sources');
+  const options = store.getUserSetting('options') || store.getDefaultSetting('options');
+  console.log(options)
+  return { sources, options };
 });
 
 const createMainWindow = () => {
