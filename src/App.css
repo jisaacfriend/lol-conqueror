@@ -91,7 +91,7 @@ select {
 
 hr {
   height: 1px;
-  background-color: #666;
+  background-color: #7B6B43;
   border: none;
 }
 
@@ -148,6 +148,7 @@ hr {
 .settings-pane .settings-controls svg {
   color: #C5A153;
   margin: 0 5px;
+  cursor: pointer;
 }
 
 .settings-pane .unsupported {
@@ -205,6 +206,27 @@ hr {
   background-color: #B3001B;
   border-color: #B3001B;
   box-shadow: 0 0 0 .2rem rgb(179, 0, 27);
+}
+
+.settings-pane .unsupported button.disabled,
+.settings-pane .unsupported button.disabled:hover,
+.settings-pane .unsupported button.disabled:active,
+.settings-pane .unsupported button.disabled:focus,
+.settings-pane .unsupported button.disabled:active:focus,
+.settings-pane .unsupported button.disabled:not(:disabled):not(.disabled).active,
+.settings-pane .unsupported button.disabled:not(:disabled):not(.disabled):active,
+.settings-pane .unsupported button.disabled:not(:disabled):not(.disabled).active:focus,
+.settings-pane .unsupported button.disabled:not(:disabled):not(.disabled):active:focus,
+.settings-pane .unsupported button.disabled .show>button.disabled.dropdown-toggle,
+.settings-pane .unsupported button.disabled .show>button.disabled.dropdown-toggle:focus {
+  background-color: #59000d;
+  border-color: #59000d;
+  box-shadow: 0 0 0 .2rem rgb(89,0,13);
+}
+
+.settings-pane .unsupported .btn-primary.disabled,
+.settings-pane .unsupported .btn-primary:disabled {
+  color: #333;
 }
 
 footer {
