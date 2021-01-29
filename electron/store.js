@@ -28,6 +28,13 @@ module.exports = function Store() {
   this.setDefaults = (defaults) => {
     Object.assign(this.defaults, defaults);
 
+    try {
+      fs.writeFileSync(this.path, JSON.stringify(this));
+    } catch (err) {
+      console.error(err);
+    }
+
+
     return this;
   };
 
@@ -42,8 +49,6 @@ module.exports = function Store() {
 
   this.setUserSetting = (prop, val) => {
     this.user[prop] = val;
-
-    console.log(this);
 
     try {
       fs.writeFileSync(this.path, JSON.stringify(this));

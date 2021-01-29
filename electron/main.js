@@ -21,7 +21,7 @@ const VALID_FILENAMES =new Map([
   ['win32', 'LeagueClient.exe'],
 ]);
 
-const settings = new Store();
+const store = new Store();
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let mainWin; let installExtension; let REACT_DEVELOPER_TOOLS;
@@ -46,18 +46,20 @@ const verifyInstall = (path) => {
 };
 
 const initConfig = () => {
-  settings.setDefaults(defaultSettings);
+  store.setDefaults(defaultSettings);
 
-  const installPath = settings.getUserSetting('installPath') || settings.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
+  const installPath = store.getUserSetting('installPath') || store.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
   const installIsValid = fs.existsSync(installPath) && verifyInstall(installPath);
-  const sources = settings.getUserSetting('sources') || settings.getDefaultSetting(`sources`);
-  const itemSets = settings.getUserSetting('itemSets') || settings.getDefaultSetting(`itemSets`);
+
+  console.log('initConfig', installIsValid, installPath);
+
+  const supportedSources = store.getDefaultSetting('supportedSources');
+  console.log(supportedSources)
 
   return {
     installIsValid,
     installPath,
-    sources,
-    itemSets,
+    supportedSources,
   }
 };
 
@@ -74,12 +76,26 @@ ipcMain.on('get-install-path', (e) => {
 
   const isValid = verifyInstall(selectedPath);
 
-  if (isValid) settings.setUserSetting('installPath', selectedPath);
+  if (isValid) store.setUserSetting('installPath', selectedPath);
 
   e.returnValue = {
     isValid,
     selectedPath,
   };
+});
+
+ipcMain.on('get-settings', (e) => {
+  const sources = store.getUserSetting('sources') || store.getDefaultSetting('sources');
+  const options = store.getUserSetting('options') || store.getDefaultSetting('options');
+  console.log(options)
+  e.returnValue = { sources, options };
+});
+
+ipcMain.handle('save-settings', async (e, data) => {
+  store.setUserSetting('sources', data.sources);
+  store.setUserSetting('options', data.options);
+  console.log(data.options)
+  return 'saved';
 });
 
 const createMainWindow = () => {
@@ -97,7 +113,6 @@ const createMainWindow = () => {
   });
 
   const initialConfig = initConfig();
-  console.log(initialConfig);
 
   mainWin.webContents.on('did-finish-load', () => {
     mainWin.webContents.send('init-config', initialConfig);
@@ -110,7 +125,7 @@ const createMainWindow = () => {
       : `file://${PUBLIC}/index.html)`,
   );
 
-  mainWin.setContentSize(470, 650);
+  mainWin.setContentSize(470, 825);
 
   mainWin.on('ready-to-show', () => {
     mainWin.show();

@@ -2,16 +2,21 @@ module.exports = {
   leagueClient: {
     defaultPath: {
       win32: 'C:/Riot Games/League Of Legends/LeagueClient.exe',
-      darwin: '/Applications/League of Legendss.app',
+      darwin: '/Applications/League of Legends.app',
       linux: '',
     },
   },
+  supportedSources: ['probuilds.net'],
   sources: {
-    blitz: false,
-    championgg: false,
-    opgg: false,
-    probuilds: false,
-    ugg: false,
+    "probuilds.net": true,
+    "blitz.gg": false,
+    "champion.gg": false,
+    "op.gg": false,
+    "u.gg": false,
   },
-  itemSets: {},
+  options: {
+    includeTrinkets: true,
+    includeConsumables: true,
+    showBuildPath: true
+  },
 };
