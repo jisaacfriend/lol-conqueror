@@ -81,9 +81,9 @@ select {
 /* Application CSS */
 .App {
   width: 470px;
-  height: 650px;
+  height: 825px;
   padding: 15px;
-  background: url("./images/background.png");
+  background: url("./images/background2.png");
   background-size: contain;
   background-position: top;
   background: cover;
@@ -131,8 +131,80 @@ hr {
   color: #B3001B;
 }
 
-.spinner-border.text-light {
-  color: #C5A153 !important;
+.settings-pane {
+  margin: 25px 0;
+  padding: 15px;
+  background: rgba(1, 10, 19, .5);
+  -webkit-box-shadow: inset 0px 0px 2px 1px #7B6B43;
+  box-shadow: inset 0px 0px 2px 1px #7B6B43;
+  color: #fefefe;
+}
+
+.settings-pane .settings-controls {
+  height: 24px;
+  text-align: right;
+}
+
+.settings-pane .settings-controls svg {
+  color: #C5A153;
+  margin: 0 5px;
+}
+
+.settings-pane .unsupported {
+  color: #333;
+}
+
+.settings-pane .settings-heading {
+  color: #C5A153;
+}
+
+.settings-pane div {
+  width: 100%;
+  height: 35px;
+}
+
+.settings-pane span {
+  width: 100%;
+  font-size: 18px;
+}
+
+.settings-pane button {
+  display: block;
+  width: 74px;
+  float: right;
+  padding: 0 5px;
+}
+
+.settings-pane button.enabled,
+.settings-pane button.enabled:hover,
+.settings-pane button.enabled:active,
+.settings-pane button.enabled:focus,
+.settings-pane button.enabled:active:focus,
+.settings-pane button.enabled:not(:disabled):not(.disabled).active,
+.settings-pane button.enabled:not(:disabled):not(.disabled):active,
+.settings-pane button.enabled:not(:disabled):not(.disabled).active:focus,
+.settings-pane button.enabled:not(:disabled):not(.disabled):active:focus,
+.settings-pane button.enabled .show>button.enabled.dropdown-toggle,
+.settings-pane button.enabled .show>button.enabled.dropdown-toggle:focus {
+  background-color: #058C42;
+  border-color: #058C42;
+  box-shadow: 0 0 0 .2rem rgb(5, 140, 66);
+}
+
+.settings-pane button.disabled,
+.settings-pane button.disabled:hover,
+.settings-pane button.disabled:active,
+.settings-pane button.disabled:focus,
+.settings-pane button.disabled:active:focus,
+.settings-pane button.disabled:not(:disabled):not(.disabled).active,
+.settings-pane button.disabled:not(:disabled):not(.disabled):active,
+.settings-pane button.disabled:not(:disabled):not(.disabled).active:focus,
+.settings-pane button.disabled:not(:disabled):not(.disabled):active:focus,
+.settings-pane button.disabled .show>button.disabled.dropdown-toggle,
+.settings-pane button.disabled .show>button.disabled.dropdown-toggle:focus {
+  background-color: #B3001B;
+  border-color: #B3001B;
+  box-shadow: 0 0 0 .2rem rgb(179, 0, 27);
 }
 
 footer {
