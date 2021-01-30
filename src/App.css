@@ -83,7 +83,7 @@ select {
   width: 470px;
   height: 825px;
   padding: 15px;
-  background: url("./images/background2.png");
+  background: url("./images/background3.png");
   background-size: contain;
   background-position: top;
   background: cover;
@@ -132,9 +132,9 @@ hr {
 }
 
 .settings-pane {
-  margin: 25px 0;
+  margin: 25px 0 45px 0;
   padding: 15px;
-  background: rgba(1, 10, 19, .5);
+  background: rgba(1, 10, 19, .65);
   -webkit-box-shadow: inset 0px 0px 2px 1px #7B6B43;
   box-shadow: inset 0px 0px 2px 1px #7B6B43;
   color: #fefefe;
@@ -162,17 +162,20 @@ hr {
 .settings-pane div {
   width: 100%;
   height: 35px;
+  margin-bottom: 3px;
 }
 
-.settings-pane span {
-  width: 100%;
+.settings-pane p {
+  display: inline-block;
+  width: 332px;
+  height: 35px;
   font-size: 18px;
+  line-height: 35px;
 }
 
 .settings-pane button {
-  display: block;
+  display: inline-block;
   width: 74px;
-  float: right;
   padding: 0 5px;
 }
 
@@ -219,14 +222,38 @@ hr {
 .settings-pane .unsupported button.disabled:not(:disabled):not(.disabled):active:focus,
 .settings-pane .unsupported button.disabled .show>button.disabled.dropdown-toggle,
 .settings-pane .unsupported button.disabled .show>button.disabled.dropdown-toggle:focus {
-  background-color: #59000d;
-  border-color: #59000d;
-  box-shadow: 0 0 0 .2rem rgb(89,0,13);
+  background-color: #2C0006;
+  border-color: #2C0006;
+  box-shadow: 0 0 0 .2rem rgb(44, 0, 6);
 }
 
 .settings-pane .unsupported .btn-primary.disabled,
 .settings-pane .unsupported .btn-primary:disabled {
   color: #333;
+}
+
+.control-buttons {
+  text-align: center;
+}
+
+.control-buttons button {
+  margin: 0 15px;
+}
+
+.control-buttons button.delete-button,
+.control-buttons button.delete-button:hover,
+.control-buttons button.delete-button:active,
+.control-buttons button.delete-button:focus,
+.control-buttons button.delete-button:active:focus,
+.control-buttons button.delete-button:not(:disabled):not(.delete-button).active,
+.control-buttons button.delete-button:not(:disabled):not(.delete-button):active,
+.control-buttons button.delete-button:not(:disabled):not(.delete-button).active:focus,
+.control-buttons button.delete-button:not(:disabled):not(.delete-button):active:focus,
+.control-buttons button.delete-button .show>button.delete-button.dropdown-toggle,
+.control-buttons button.delete-button .show>button.delete-button.dropdown-toggle:focus {
+  background-color: #B3001B;
+  border-color: #B3001B;
+  box-shadow: 0 0 0 .2rem rgb(179, 0, 27);
 }
 
 footer {
@@ -239,12 +266,17 @@ footer {
   background-color: rgba(40,40,40,.4);
 }
 
+.control-buttons button {
+  margin: 0 15px;
+}
+
 footer div {
   float: left;
   width: 146px;
 }
 
-footer div a {
+footer div a,
+footer div a:hover {
   text-decoration: none;
   color: #00C2D1;
 }
