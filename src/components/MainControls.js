@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner'
 import { faSave, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,6 +14,8 @@ class MainControls extends React.Component {
       showModal: false,
       sources: {},
       options: {},
+      isImporting: false,
+      isDeleting: false,
     };
   }
 
@@ -46,6 +49,20 @@ class MainControls extends React.Component {
     console.log('Restore Default Settings');
     ipcRenderer.invoke('restore-options')
       .then(({ sources, options }) => this.setState({ sources, options }));
+  }
+
+  simRequest = () => {
+    return new Promise((resolve) => setTimeout(resolve, 2000));
+  }
+
+  importPages = () => {
+    this.setState({ isImporting: true });
+    this.simRequest().then(() => this.setState({ isImporting: false }));
+  }
+
+  deletePages = () => {
+    this.setState({ isDeleting: true });
+    this.simRequest().then(() => this.setState({ isDeleting: false }));
   }
 
   processSettings = () => {
@@ -104,8 +121,19 @@ class MainControls extends React.Component {
             {optionsState}
           </div>
           <div className="control-buttons">
-            <Button>Import Items</Button>
-            <Button className="delete-button">Delete Items</Button>
+            <Button
+              disabled={this.state.isImporting || this.state.isDeleting}
+              onClick={this.importPages}
+            >
+            { this.state.isImporting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Import Items' }
+            </Button>
+            <Button
+              className="delete-button"
+              disabled={this.state.isImporting || this.state.isDeleting}
+              onClick={this.deletePages}
+            >
+              { this.state.isDeleting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Delete Items' }
+            </Button>
           </div>
         </div>)
       : null;
