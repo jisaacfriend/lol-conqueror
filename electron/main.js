@@ -50,11 +50,7 @@ const initConfig = () => {
 
   const installPath = store.getUserSetting('installPath') || store.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
   const installIsValid = fs.existsSync(installPath) && verifyInstall(installPath);
-
-  console.log('initConfig', installIsValid, installPath);
-
   const supportedSources = store.getDefaultSetting('supportedSources');
-  console.log(supportedSources)
 
   return {
     installIsValid,
@@ -103,6 +99,22 @@ ipcMain.handle('restore-options', async () => {
   const options = store.getUserSetting('options') || store.getDefaultSetting('options');
   console.log(options)
   return { sources, options };
+});
+
+const simRequest = () => {
+  return new Promise((resolve) => setTimeout(resolve, 5000));
+};
+
+ipcMain.handle('import-pages', async (e, data) => {
+  console.log('Importing pages...', data);
+  await simRequest();
+  return('Pages imported!');
+});
+
+ipcMain.handle('delete-pages', async () => {
+  console.log('Deleting pages...');
+  await simRequest();
+  return ('Pages deleted!');
 });
 
 const createMainWindow = () => {

@@ -5,6 +5,7 @@ module.exports = {
       darwin: '/Applications/League of Legends.app',
       linux: '',
     },
+    currentVersion: '11.2',
   },
   supportedSources: ['champion.gg'],
   sources: {
