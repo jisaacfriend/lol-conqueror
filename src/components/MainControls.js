@@ -57,12 +57,22 @@ class MainControls extends React.Component {
 
   importPages = () => {
     this.setState({ isImporting: true });
-    this.simRequest().then(() => this.setState({ isImporting: false }));
+    // this.simRequest().then(() => this.setState({ isImporting: false }));
+    ipcRenderer.invoke('import-pages', { sources: this.state.sources, options: this.state.options })
+      .then((res) => {
+        console.log(res);
+        this.setState({ isImporting: false });
+      });
   }
 
   deletePages = () => {
     this.setState({ isDeleting: true });
-    this.simRequest().then(() => this.setState({ isDeleting: false }));
+    // this.simRequest().then(() => this.setState({ isDeleting: false }));
+    ipcRenderer.invoke('delete-pages', { sources: this.state.sources, options: this.state.options })
+      .then((res) => {
+        console.log(res);
+        this.setState({ isDeleting: false });
+      });
   }
 
   processSettings = () => {
