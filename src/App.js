@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import InstallLocator from './components/InstallLocator';
-// import SourcesSelector from './components/SourcesSelector.js';
-import SettingsPane from './components/SettingsPane';
+import MainControls from './components/MainControls';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -40,7 +39,7 @@ class App extends React.Component {
         <hr />
         <div className="main">
           <InstallLocator isValid={installIsValid} path={installPath} onPathChange={this.setInstallPath}></InstallLocator>
-          <SettingsPane isValid={installIsValid} supportedSources={supportedSources}></SettingsPane>
+          <MainControls isValid={installIsValid} supportedSources={supportedSources}></MainControls>
         </div>
         <Footer></Footer>
       </div>

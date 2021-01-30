@@ -6,12 +6,12 @@ module.exports = {
       linux: '',
     },
   },
-  supportedSources: ['probuilds.net'],
+  supportedSources: ['champion.gg'],
   sources: {
-    "probuilds.net": true,
+    "champion.gg": true,
     "blitz.gg": false,
-    "champion.gg": false,
     "op.gg": false,
+    "probuilds.net": false,
     "u.gg": false,
   },
   options: {

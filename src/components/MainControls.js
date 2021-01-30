@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const { ipcRenderer } = window.require('electron');
 
-class SettingsPane extends React.Component {
+class MainControls extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,9 +62,8 @@ class SettingsPane extends React.Component {
 
       return (
         <div key={source} className={sourceIsSupported.toString()}>
-          <span>{source}
-            <Button id={source} className={sourceStatus} size="sm" onClick={this.updateSource} disabled={disabled}>{sourceStatus}</Button>
-          </span>
+          <p>{source}</p>
+          <Button id={source} className={sourceStatus} size="sm" onClick={this.updateSource} disabled={disabled}>{sourceStatus}</Button>
         </div>
       );
     });
@@ -76,9 +75,8 @@ class SettingsPane extends React.Component {
 
       return (
         <div key={option}>
-          <span>{option}
-            <Button id={option} className={optionStatus} size="sm" onClick={this.updateOption}>{optionStatus}</Button>
-          </span>
+          <p>{option}</p>
+          <Button id={option} className={optionStatus} size="sm" onClick={this.updateOption}>{optionStatus}</Button>
         </div>
       );
     });
@@ -93,16 +91,22 @@ class SettingsPane extends React.Component {
     const { sourcesState, optionsState } = this.processSettings();
 
     return this.props.isValid
-      ? (<div className="settings-pane">
-          <div className="settings-controls">
-            <FontAwesomeIcon icon={faUndo} title="Restore Last Saved Settings" className="control-icon" onClick={this.restoreDefaultSettings} />
-            <FontAwesomeIcon icon={faSave} title="Save Settings" className="control-icon" onClick={this.saveSettings} />
+      ? (<div className="main-controls">
+          <div className="settings-pane">
+            <div className="settings-controls">
+              <FontAwesomeIcon icon={faUndo} title="Restore Last Saved Settings" className="control-icon" onClick={this.restoreDefaultSettings} />
+              <FontAwesomeIcon icon={faSave} title="Save Settings" className="control-icon" onClick={this.saveSettings} />
+            </div>
+            <h4 className="settings-heading">Sources</h4>
+            {sourcesState}
+            <br />
+            <h4 className="settings-heading">Options</h4>
+            {optionsState}
           </div>
-          <h4 className="settings-heading">Sources</h4>
-          {sourcesState}
-          <br />
-          <h4 className="settings-heading">Options</h4>
-          {optionsState}
+          <div className="control-buttons">
+            <Button>Import Items</Button>
+            <Button className="delete-button">Delete Items</Button>
+          </div>
         </div>)
       : null;
   }
@@ -112,4 +116,4 @@ class SettingsPane extends React.Component {
   }
 }
 
-export default SettingsPane;
+export default MainControls;
