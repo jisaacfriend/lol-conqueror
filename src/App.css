@@ -124,6 +124,27 @@ hr {
 .text-white {
   color: #fefefe;
 }
+
+.text-bronze {
+  color: #7B6B43;
+}
+
+.text-gold {
+  color: #C5A153;
+}
+
+.text-turquoise {
+  color: #00C2D1;
+}
+
+.text-med {
+  font-size: 16px;
+}
+
+.text-small {
+  font-size: 11px;
+}
+
 .install-invalid {
   text-align: center;
   color: #c5a153;
@@ -134,7 +155,7 @@ hr {
 }
 
 .settings-pane {
-  margin: 25px 0 45px 0;
+  margin: 25px 0 37px 0;
   padding: 15px;
   background: rgba(1, 10, 19, .55);
   -webkit-box-shadow: inset 0px 0px 2px 1px #7B6B43;

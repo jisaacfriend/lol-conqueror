@@ -7,10 +7,13 @@ class InstallLocator extends React.Component {
   }
 
   renderContent() {
+    const updateString = new Date(this.props.lastUpdated).toUTCString();
+
     if (this.props.isValid) return (
       <div className="install-success">
         <h3 className="text-success">League Client Install Found!</h3>
-        <p className="text-white">{this.props.path}</p>
+        <p className="text-gold text-med">Using League Client Version: {this.props.clientVersion}</p>
+        <p className="text-turquoise text-small">Updated {updateString}</p>
       </div>
     );
 

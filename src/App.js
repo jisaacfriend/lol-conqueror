@@ -15,8 +15,8 @@ class App extends React.Component {
   }
 
   setInstallPath() {
-    let { isValid, selectedPath } = ipcRenderer.sendSync('get-install-path');
-    this.setState({ installIsValid: isValid, installPath: selectedPath });
+    let { lolClientVersion, isValid, selectedPath } = ipcRenderer.sendSync('get-install-path');
+    this.setState({ lolClientVersion: lolClientVersion, installIsValid: isValid, installPath: selectedPath });
   }
 
   componentDidMount() {
@@ -27,6 +27,8 @@ class App extends React.Component {
   }
 
   render() {
+    const lolClientVersion = this.state.lolClientVersion;
+    const lastUpdated = this.state.lastUpdated;
     const installIsValid = this.state.installIsValid;
     const installPath = this.state.installPath;
     const supportedSources = this.state.supportedSources;
@@ -38,7 +40,7 @@ class App extends React.Component {
         <Header></Header>
         <hr />
         <div className="main">
-          <InstallLocator isValid={installIsValid} path={installPath} onPathChange={this.setInstallPath}></InstallLocator>
+          <InstallLocator isValid={installIsValid} path={installPath} clientVersion={lolClientVersion} lastUpdated={lastUpdated} onPathChange={this.setInstallPath}></InstallLocator>
           <MainControls isValid={installIsValid} supportedSources={supportedSources}></MainControls>
         </div>
         <Footer></Footer>

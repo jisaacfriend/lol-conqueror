@@ -7,21 +7,23 @@ const filePath = path.join(userDataPath, 'userConfig.json');
 
 const parseDataFile = () => {
   try {
-    const { defaults, user } = JSON.parse(fs.readFileSync(filePath));
-    return { defaults, user };
+    const { app, defaults, user } = JSON.parse(fs.readFileSync(filePath));
+    return { app, defaults, user };
   } catch (err) {
     return {
+      app: {},
       defaults: {},
       user: {},
     };
   }
 }
 
-const { defaults, user } = parseDataFile();
+const { app, defaults, user } = parseDataFile();
 
 module.exports = function Store() {
   this.userDataPath = userDataPath;
   this.path = filePath;
+  this.app = app;
   this.defaults = defaults;
   this.user = user;
 
@@ -61,7 +63,22 @@ module.exports = function Store() {
 
   this.getUserSetting = (prop) => prop.split('.').reduce((o, i) => o[i], this.user);
 
+  this.setAppSetting = (prop, val) => {
+    this.app[prop] = val;
+
+    try {
+      fs.writeFileSync(this.path, JSON.stringify(this));
+    } catch (err) {
+      console.error(err);
+    }
+
+    return this;
+  };
+
+  this.getAppSetting = (prop) => prop.split('.').reduce((o, i) => o[i], this.app);
+
   this.getAllSettings = () => ({
+    app: this.app,
     defaults: this.defaults,
     user: this.user,
   });

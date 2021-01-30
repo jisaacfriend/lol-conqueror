@@ -8,6 +8,7 @@ const {
 } = require('electron');
 
 const isDev = require('electron-is-dev');
+const axios = require('axios').default;
 const fs = require('fs');
 const path = require('path');
 
@@ -22,6 +23,8 @@ const VALID_FILENAMES =new Map([
 ]);
 
 const store = new Store();
+
+const now = Date.now();
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let mainWin; let installExtension; let REACT_DEVELOPER_TOOLS;
@@ -39,20 +42,36 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+const initLeagueClientData = async () => {
+  const { data: { v: clientVersion } } = await axios.get('https://ddragon.leagueoflegends.com/realms/na.json');
+  const { data: { data: championsList } } = await axios.get('http://ddragon.leagueoflegends.com/cdn/11.2.1/data/en_US/champion.json');
+
+  store.setAppSetting('lolClientVersion', clientVersion);
+  store.setAppSetting('lastUpdated', now);
+  store.setAppSetting('championsList', Object.keys(championsList));
+};
+
 const verifyInstall = (path) => {
   const fileName = VALID_FILENAMES.get(PLATFORM);
 
   return path.endsWith(fileName);
 };
 
-const initConfig = () => {
+const initConfig = async () => {
   store.setDefaults(defaultSettings);
+
+  await initLeagueClientData();
+
+  const lolClientVersion = store.getAppSetting('lolClientVersion');
+  const lastUpdated = store.getAppSetting('lastUpdated');
 
   const installPath = store.getUserSetting('installPath') || store.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
   const installIsValid = fs.existsSync(installPath) && verifyInstall(installPath);
   const supportedSources = store.getDefaultSetting('supportedSources');
 
   return {
+    lolClientVersion,
+    lastUpdated,
     installIsValid,
     installPath,
     supportedSources,
@@ -117,7 +136,7 @@ ipcMain.handle('delete-pages', async () => {
   return ('Pages deleted!');
 });
 
-const createMainWindow = () => {
+const createMainWindow = async () => {
   mainWin = new BrowserWindow({
     useContentSize: true,
     center: true,
@@ -131,7 +150,9 @@ const createMainWindow = () => {
     },
   });
 
-  const initialConfig = initConfig();
+  // await initLeagueClientData();
+
+  const initialConfig = await initConfig();
 
   mainWin.webContents.on('did-finish-load', () => {
     mainWin.webContents.send('init-config', initialConfig);
