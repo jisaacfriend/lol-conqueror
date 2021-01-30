@@ -45,10 +45,20 @@ if (require('electron-squirrel-startup')) {
 const initLeagueClientData = async () => {
   const { data: { v: clientVersion } } = await axios.get('https://ddragon.leagueoflegends.com/realms/na.json');
   const { data: { data: championsList } } = await axios.get('http://ddragon.leagueoflegends.com/cdn/11.2.1/data/en_US/champion.json');
+  const roles = {
+    'champion.gg': ['Top', 'Jungle', 'Middle', 'ADC', 'Support'],
+    'blitz.gg': [],
+    'op.gg': [],
+    'probuilds.net': [],
+    'u.gg': [],
+  };
+  const pickThreshold = .5;
 
   store.setAppSetting('lolClientVersion', clientVersion);
   store.setAppSetting('lastUpdated', now);
   store.setAppSetting('championsList', Object.keys(championsList));
+  store.setAppSetting('championRoles', roles);
+  store.setAppSetting('minimumPickThreshold', pickThreshold);
 };
 
 const verifyInstall = (path) => {

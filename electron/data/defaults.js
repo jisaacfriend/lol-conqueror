@@ -11,12 +11,12 @@ module.exports = {
     "champion.gg": true,
     "blitz.gg": false,
     "op.gg": false,
-    "probuilds.net": false,
     "u.gg": false,
   },
   options: {
-    includeTrinkets: true,
-    includeConsumables: true,
-    showBuildPath: true
+    'Include Trinkets': true,
+    'Include Consumables': true,
+    'Show Build Path': true,
+    'Show Skill Order': true,
   },
 };
