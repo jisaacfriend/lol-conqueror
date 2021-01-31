@@ -14,6 +14,7 @@ const path = require('path');
 
 const Store = require('./store');
 const defaultSettings = require('./data/defaults');
+const blitzgg = require('./sources/blitzgg');
 
 const PUBLIC = path.join(__dirname, '../public');
 const PLATFORM = process.platform;
@@ -25,6 +26,8 @@ const VALID_FILENAMES =new Map([
 const store = new Store();
 
 const now = Date.now();
+
+const roles = ['top', 'jungle', 'middle', 'adc', 'support'];
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let mainWin; let installExtension; let REACT_DEVELOPER_TOOLS;
@@ -130,13 +133,16 @@ ipcMain.handle('restore-options', async () => {
   return { sources, options };
 });
 
+/**
+ * TODO: Remove this
+ */
 const simRequest = () => {
   return new Promise((resolve) => setTimeout(resolve, 5000));
 };
 
 ipcMain.handle('import-pages', async (e, data) => {
   console.log('Importing pages...', data);
-  await simRequest();
+  await blitzgg.getData({ roles });
   return('Pages imported!');
 });
 
@@ -159,8 +165,6 @@ const createMainWindow = async () => {
       contextIsolation: false,
     },
   });
-
-  // await initLeagueClientData();
 
   const initialConfig = await initConfig();
 

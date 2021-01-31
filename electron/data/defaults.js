@@ -8,8 +8,8 @@ module.exports = {
   },
   supportedSources: ['champion.gg'],
   sources: {
-    "champion.gg": true,
-    "blitz.gg": false,
+    "blitz.gg": true,
+    "champion.gg": false,
     "op.gg": false,
     "u.gg": false,
   },
