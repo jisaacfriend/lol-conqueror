@@ -142,7 +142,7 @@ const simRequest = () => {
 
 ipcMain.handle('import-pages', async (e, data) => {
   console.log('Importing pages...', data);
-  await blitzgg.getData({ roles });
+  await simRequest();
   return('Pages imported!');
 });
 
