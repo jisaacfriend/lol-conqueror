@@ -71,12 +71,26 @@ const verifyInstall = (path) => {
 };
 
 const initConfig = async () => {
-  store.setDefaults(defaultSettings);
-
   await initLeagueClientData();
 
   const lolClientVersion = store.getAppSetting('lolClientVersion');
   const lastUpdated = store.getAppSetting('lastUpdated');
+  const championsList = store.getAppSetting('championsList')
+
+  const preppedChamps = Object.keys(championsList).reduce((acc, champ) => {
+    const champs = { ...acc };
+
+    if (champ in champs === false) champs[champ] = true;
+
+    return champs;
+  }, {});
+
+  const augmentedDefaults = {
+    ...defaultSettings,
+    champions: preppedChamps,
+  };
+
+  store.setDefaults(augmentedDefaults);
 
   const installPath = store.getUserSetting('installPath') || store.getDefaultSetting(`leagueClient.defaultPath.${PLATFORM}`);
   const installIsValid = fs.existsSync(installPath) && verifyInstall(installPath);
@@ -115,7 +129,8 @@ ipcMain.on('get-install-path', (e) => {
 ipcMain.on('get-settings', (e) => {
   const sources = store.getUserSetting('sources') || store.getDefaultSetting('sources');
   const options = store.getUserSetting('options') || store.getDefaultSetting('options');
-  console.log(options)
+  // const champions = store.getUserSetting('champions') ||
+
   e.returnValue = { sources, options };
 });
 
@@ -142,7 +157,8 @@ const simRequest = () => {
 
 ipcMain.handle('import-pages', async (e, data) => {
   console.log('Importing pages...', data);
-  await simRequest();
+  // await simRequest();
+  await blitzgg.importPages();
   return('Pages imported!');
 });
 
@@ -159,6 +175,7 @@ const createMainWindow = async () => {
     resizable: false,
     backgroundColor: '#010A13',
     show: false,
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: false,

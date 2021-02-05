@@ -2,11 +2,11 @@ module.exports = {
   leagueClient: {
     defaultPath: {
       win32: 'C:/Riot Games/League Of Legends/LeagueClient.exe',
-      darwin: '/Applications/League of Legends.app',
+      darwin: '/Applications/League of Legendss.app',
       linux: '',
     },
   },
-  supportedSources: ['champion.gg'],
+  supportedSources: ['blitz.gg'],
   sources: {
     "blitz.gg": true,
     "champion.gg": false,
@@ -16,7 +16,6 @@ module.exports = {
   options: {
     'Include Trinkets': true,
     'Include Consumables': true,
-    'Show Build Path': true,
     'Show Skill Order': true,
   },
 };

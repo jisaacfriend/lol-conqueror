@@ -1,20 +1,19 @@
 import React from 'react';
-import Header from './components/Header';
 import InstallLocator from './components/InstallLocator';
 import MainControls from './components/MainControls';
 import Footer from './components/Footer';
 import './App.css';
 
 const { ipcRenderer } = window.require('electron');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.setInstallPath = this.setInstallPath.bind(this);
     this.state = { installIsValid: false, installPath: '', supportedSources: [] };
   }
 
-  setInstallPath() {
+  setInstallPath = () => {
     let { lolClientVersion, isValid, selectedPath } = ipcRenderer.sendSync('get-install-path');
     this.setState({ lolClientVersion: lolClientVersion, installIsValid: isValid, installPath: selectedPath });
   }
@@ -37,7 +36,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Header></Header>
+        <header></header>
         <hr />
         <div className="main">
           <InstallLocator isValid={installIsValid} path={installPath} clientVersion={lolClientVersion} lastUpdated={lastUpdated} onPathChange={this.setInstallPath}></InstallLocator>

@@ -20,9 +20,9 @@ class MainControls extends React.Component {
   }
 
   componentDidMount = () => {
-    const { sources, options } = ipcRenderer.sendSync('get-settings');
+    const { sources, options, champions } = ipcRenderer.sendSync('get-settings');
 
-    this.setState({ sources, options });
+    this.setState({ sources, options, champions });
   }
 
   updateSource = (e) => {
@@ -65,6 +65,10 @@ class MainControls extends React.Component {
       });
   }
 
+  showChampSelector = () => {
+    this.setState({ showModal: true });
+  }
+
   deletePages = () => {
     this.setState({ isDeleting: true });
     // this.simRequest().then(() => this.setState({ isDeleting: false }));
@@ -88,9 +92,9 @@ class MainControls extends React.Component {
       const disabled = sourceIsSupported === 'unsupported';
 
       return (
-        <div key={source} className={sourceIsSupported.toString()}>
+        <div key={source} className={`settings-line ${sourceIsSupported.toString()}`}>
           <p>{source}</p>
-          <Button id={source} className={sourceStatus} size="sm" onClick={this.updateSource} disabled={disabled}>{sourceStatus}</Button>
+          <Button id={source} className={`settings-toggle ${sourceStatus}`} size="sm" onClick={this.updateSource} disabled={disabled}>{sourceStatus}</Button>
         </div>
       );
     });
@@ -101,9 +105,9 @@ class MainControls extends React.Component {
         : 'disabled';
 
       return (
-        <div key={option}>
+        <div className="settingsLine" key={option}>
           <p>{option}</p>
-          <Button id={option} className={optionStatus} size="sm" onClick={this.updateOption}>{optionStatus}</Button>
+          <Button id={option} className={`settings-toggle ${optionStatus}`} size="sm" onClick={this.updateOption}>{optionStatus}</Button>
         </div>
       );
     });
@@ -129,6 +133,15 @@ class MainControls extends React.Component {
             <br />
             <h4 className="settings-heading">Options</h4>
             {optionsState}
+            <div className="champion-selector">
+              <Button
+                className="champion-select"
+                disabled={this.state.isImporting || this.state.isDeleting}
+                onClick={this.showChampSelector}
+              >
+                Select Champions
+              </Button>
+            </div>
           </div>
           <div className="control-buttons">
             <Button
