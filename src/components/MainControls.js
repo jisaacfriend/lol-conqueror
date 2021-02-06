@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner'
 import { faSave, faUndo } from '@fortawesome/free-solid-svg-icons';
@@ -69,6 +70,10 @@ class MainControls extends React.Component {
     this.setState({ showModal: true });
   }
 
+  processChampOptions = () => {
+    this.setState({ showModal: false });
+  }
+
   deletePages = () => {
     this.setState({ isDeleting: true });
     // this.simRequest().then(() => this.setState({ isDeleting: false }));
@@ -118,47 +123,67 @@ class MainControls extends React.Component {
     };
   }
 
+  renderModal = () => {
+    return (
+      <Modal show={this.state.showModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={this.processChampOptions}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
   renderContent() {
     const { sourcesState, optionsState } = this.processSettings();
+    const champSelectModal = this.renderModal();
 
     return this.props.isValid
-      ? (<div className="main-controls">
-          <div className="settings-pane">
-            <div className="settings-controls">
-              <FontAwesomeIcon icon={faUndo} title="Restore Last Saved Settings" className="control-icon" onClick={this.restoreDefaultSettings} />
-              <FontAwesomeIcon icon={faSave} title="Save Settings" className="control-icon" onClick={this.saveSettings} />
+      ? (<>
+          {champSelectModal}
+          <div className="main-controls">
+            <div className="settings-pane">
+              <div className="settings-controls">
+                <FontAwesomeIcon icon={faUndo} title="Restore Last Saved Settings" className="control-icon" onClick={this.restoreDefaultSettings} />
+                <FontAwesomeIcon icon={faSave} title="Save Settings" className="control-icon" onClick={this.saveSettings} />
+              </div>
+              <h4 className="settings-heading">Sources</h4>
+              {sourcesState}
+              <br />
+              <h4 className="settings-heading">Options</h4>
+              {optionsState}
+              <div className="champion-selector">
+                <Button
+                  className="champion-select"
+                  disabled={this.state.isImporting || this.state.isDeleting}
+                  onClick={this.showChampSelector}
+                >
+                  Select Champions
+                </Button>
+              </div>
             </div>
-            <h4 className="settings-heading">Sources</h4>
-            {sourcesState}
-            <br />
-            <h4 className="settings-heading">Options</h4>
-            {optionsState}
-            <div className="champion-selector">
+            <div className="control-buttons">
               <Button
-                className="champion-select"
                 disabled={this.state.isImporting || this.state.isDeleting}
-                onClick={this.showChampSelector}
+                onClick={this.importPages}
               >
-                Select Champions
+                {this.state.isImporting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Import Items'}
+              </Button>
+              <Button
+                className="delete-button"
+                disabled={this.state.isImporting || this.state.isDeleting}
+                onClick={this.deletePages}
+              >
+                {this.state.isDeleting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Delete Items'}
               </Button>
             </div>
           </div>
-          <div className="control-buttons">
-            <Button
-              disabled={this.state.isImporting || this.state.isDeleting}
-              onClick={this.importPages}
-            >
-            { this.state.isImporting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Import Items' }
-            </Button>
-            <Button
-              className="delete-button"
-              disabled={this.state.isImporting || this.state.isDeleting}
-              onClick={this.deletePages}
-            >
-              { this.state.isDeleting ? <Spinner as="span" animation="border" size="sm" role="status" /> : 'Delete Items' }
-            </Button>
-          </div>
-        </div>)
+        </>)
       : null;
   }
 
